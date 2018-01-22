@@ -1,0 +1,14 @@
+<h1>Super beta and not even close to being done. RJ's a vato.</h1>
+<ul>
+  <li *ngFor="let characteristic of tRad.characteristics">
+    <span>{{characteristic.description}}</span>
+    <ul>
+      <li *ngFor="let option of characteristic.options">
+        <label>{{option.description}}: {{option.points}}
+          <input type="{{characteristic.type}}" name={{characteristic.description}} (ngModel)="option.points" (change)="addPoints($event, characteristic, option)">
+        </label>
+      </li>
+    </ul>
+  </li>
+</ul>
+<div>points: {{pointsTotal}}</div>
