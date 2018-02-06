@@ -180,16 +180,20 @@ export class AppComponent {
     'TR1' : {
       'prognosis': 'Benign',
       'notes': ['No FNA']
-    }'TR2' : {
+    },
+    'TR2' : {
       'prognosis': 'Not Suspicious',
       'notes': ['No FNA']
-    },'TR3' : {
+    },
+    'TR3' : {
       'prognosis': 'Mildly Suspicious',
       'notes': ['FNA if &ge; 2.5 cm', 'Follow if &ge; 1.5 cm']
-    },'TR4' : {
+    },
+    'TR4' : {
       'prognosis': 'Moderately Suspicious',
       'notes': ['FNA if &ge; 1.5 cm', 'Follow if &ge; 1 cm']
-    },'TR5' : {
+    },
+    'TR5' : {
       'prognosis': 'Highly Suspicious',
       'notes': ['FNA if &ge; 1 cm', 'Follow if &ge; 0.5 cm*', '*Refer to discussion of papillary microcarcinomas for 5-9 mm TR5 nodules.']
     }
