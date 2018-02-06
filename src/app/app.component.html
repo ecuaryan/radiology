@@ -1,6 +1,6 @@
 <h1>A little more somethin' somethin' for ya.</h1>
 <ul>
-  <li *ngFor="let characteristic of tRad.characteristics" [ngClass]="{'hidden': characteristic.hidden }">
+  <li *ngFor="let characteristic of tiRad.characteristics" [ngClass]="{'hidden': characteristic.hidden }">
     <span>{{characteristic.description}}</span>
     <ul>
       <li *ngFor="let option of characteristic.options">
@@ -11,5 +11,8 @@
     </ul>
   </li>
 </ul>
-<button (click)="move(-1);" [disabled]="index == 0"><< back</button><button (click)="move(1);" [disabled]="index == tRad.characteristics.length-1">next >></button>
+<button (click)="move(-1);" [disabled]="index == 0"><< back</button><button (click)="move(1);" [disabled]="index == tiRad.characteristics.length-1">next >></button>
 <div>points: {{pointsTotal}}</div>
+<div>prognosis: {{outcome.prognosis}}</div>
+<!-- <div>{{outcome.notes | json}}</div> -->
+<div *ngFor="let note of outcome.notes" [innerHTML]="note"></div>

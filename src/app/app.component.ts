@@ -9,6 +9,7 @@ export class AppComponent {
   pointsTotal = 0;
   selectedCharacteristicPointMap = {};
   index = 0;
+  outcome = {};
 
   addPoints = function(event, characteristic, option) {
     if(option.break){
@@ -23,7 +24,7 @@ export class AppComponent {
       } else {
         this.selectedCharacteristicPointMap[characteristic.description] = option.points;
 
-        let onNotOnLastCharacteristic = this.index < this.tRad.characteristics.length - 1;
+        let onNotOnLastCharacteristic = this.index < this.tiRad.characteristics.length - 1;
         if(onNotOnLastCharacteristic){
           this.move(1);
         }
@@ -35,16 +36,32 @@ export class AppComponent {
           this.pointsTotal += this.selectedCharacteristicPointMap[key];
         }
       }
+
+      this.calculateOutcome();
     }
   };
 
+  calculateOutcome (){
+    if(this.pointsTotal < 2){
+      this.outcome = this.tiRadLevelOutcome.TR1;
+    } else if (this.pointsTotal < 3){
+      this.outcome = this.tiRadLevelOutcome.TR2;
+    } else if (this.pointsTotal < 4){
+      this.outcome = this.tiRadLevelOutcome.TR3;
+    } else if (this.pointsTotal < 7){
+      this.outcome = this.tiRadLevelOutcome.TR4;
+    } else {
+      this.outcome = this.tiRadLevelOutcome.TR5;
+    }
+  }
+
   move = function (direction){
-    this.tRad.characteristics[this.index].hidden = true;
+    this.tiRad.characteristics[this.index].hidden = true;
     this.index += direction;
-    this.tRad.characteristics[this.index].hidden = false;
+    this.tiRad.characteristics[this.index].hidden = false;
   }
   // tslint:disable-next-line:member-ordering
-  tRad = {
+  tiRad = {
     'id': 1,
     'description': 'ARC TI-RADS',
     'characteristics': [
@@ -158,4 +175,23 @@ export class AppComponent {
       }
     ]
   };
+
+  tiRadLevelOutcome = {
+    'TR1' : {
+      'prognosis': 'Benign',
+      'notes': ['No FNA']
+    }'TR2' : {
+      'prognosis': 'Not Suspicious',
+      'notes': ['No FNA']
+    },'TR3' : {
+      'prognosis': 'Mildly Suspicious',
+      'notes': ['FNA if &ge; 2.5 cm', 'Follow if &ge; 1.5 cm']
+    },'TR4' : {
+      'prognosis': 'Moderately Suspicious',
+      'notes': ['FNA if &ge; 1.5 cm', 'Follow if &ge; 1 cm']
+    },'TR5' : {
+      'prognosis': 'Highly Suspicious',
+      'notes': ['FNA if &ge; 1 cm', 'Follow if &ge; 0.5 cm*', '*Refer to discussion of papillary microcarcinomas for 5-9 mm TR5 nodules.']
+    }
+  }
 }
