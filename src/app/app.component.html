@@ -1,6 +1,6 @@
-<h1>Super beta and not even close to being done. RJ's a vato.</h1>
+<h1>A little more somethin' somethin' for ya.</h1>
 <ul>
-  <li *ngFor="let characteristic of tRad.characteristics">
+  <li *ngFor="let characteristic of tRad.characteristics" [ngClass]="{'hidden': characteristic.hidden }">
     <span>{{characteristic.description}}</span>
     <ul>
       <li *ngFor="let option of characteristic.options">
@@ -11,4 +11,5 @@
     </ul>
   </li>
 </ul>
+<button (click)="move(-1);" [disabled]="index == 0"><< back</button><button (click)="move(1);" [disabled]="index == tRad.characteristics.length-1">next >></button>
 <div>points: {{pointsTotal}}</div>
