@@ -9,7 +9,7 @@ export class AppComponent {
   pointsTotal = 0;
   selectedCharacteristicPointMap = {};
   index = 0;
-  outcome = {};
+  outcome: any = {};
 
   addPoints = function(event, characteristic, option) {
     if(option.break){
