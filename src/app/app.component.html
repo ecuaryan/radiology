@@ -1,18 +1,29 @@
-<h1>A little more somethin' somethin' for ya.</h1>
-<ul>
-  <li *ngFor="let characteristic of tiRad.characteristics" [ngClass]="{'hidden': characteristic.hidden }">
-    <span>{{characteristic.description}}</span>
-    <ul>
-      <li *ngFor="let option of characteristic.options">
-        <label>{{option.description}}: {{option.points}}
-          <input type="{{characteristic.type}}" name={{characteristic.description}} (ngModel)="option.points" (change)="addPoints($event, characteristic, option)">
-        </label>
-      </li>
-    </ul>
-  </li>
-</ul>
-<button (click)="move(-1);" [disabled]="index == 0"><< back</button><button (click)="move(1);" [disabled]="index == tiRad.characteristics.length-1">next >></button>
-<div>points: {{pointsTotal}}</div>
-<div>prognosis: {{outcome.prognosis}}</div>
-<!-- <div>{{outcome.notes | json}}</div> -->
-<div *ngFor="let note of outcome.notes" [innerHTML]="note"></div>
+<h1>ARC TI-RADS</h1>
+<div class="well">
+  <ul class="side-nav">
+    <li *ngFor="let characteristic of tiRad.characteristics">{{characteristic.description}}</li>
+  </ul>
+  <div class="form-container">
+    <button (click)="move(-1);" [disabled]="index == 0">
+      <i class="fas fa-chevron-circle-left"></i>
+    </button>
+    <div style="float:left; min-width: 500px; margin: 0 20px;" *ngFor="let characteristic of tiRad.characteristics" [ngClass]="{'hidden': characteristic.hidden }">
+      <!-- <span>{{characteristic.description}}</span> -->
+      <ul class="form-list">
+        <li *ngFor="let option of characteristic.options">
+          <label [ngClass]="{'hover-note': option.note}">{{option.description}}: {{option.points}}
+            <span *ngIf="option.note" class="hover-content" [innerHTML]="option.note"></span>
+            <input class="hidden" type="{{characteristic.type}}" name={{characteristic.description}} (ngModel)="option.points" (change)="addPoints($event, characteristic, option)">
+          </label>
+        </li>
+      </ul>
+    </div>
+    <button (click)="move(1);" [disabled]="index == tiRad.characteristics.length-1">
+      <i class="fas fa-chevron-circle-right"></i>
+    </button>
+    <div style="clear:both;"></div>
+    <div>points: {{pointsTotal}}</div>
+    <div>prognosis: {{outcome.prognosis}}</div>
+    <div *ngFor="let note of outcome.notes" [innerHTML]="note"></div>
+  </div>
+</div>
