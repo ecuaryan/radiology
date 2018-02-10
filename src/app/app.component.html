@@ -1,10 +1,14 @@
 <h1>ARC TI-RADS</h1>
 <div class="well">
-  <ul class="side-nav">
-    <li *ngFor="let characteristic of tiRad.characteristics">{{characteristic.description}}</li>
-  </ul>
+  <div class="side-nav">
+    <ul>
+      <li *ngFor="let characteristic of tiRad.characteristics">{{characteristic.description}}</li>
+    </ul>
+    <hr>
+    <div>points: {{pointsTotal}}</div>
+  </div>
   <div class="form-container">
-    <button (click)="move(-1);" [disabled]="index == 0">
+    <button class="nav-button" (click)="move(-1);" [disabled]="index == 0">
       <i class="fas fa-chevron-circle-left"></i>
     </button>
     <div style="float:left; min-width: 500px; margin: 0 20px;" *ngFor="let characteristic of tiRad.characteristics" [ngClass]="{'hidden': characteristic.hidden }">
@@ -18,12 +22,19 @@
         </li>
       </ul>
     </div>
-    <button (click)="move(1);" [disabled]="index == tiRad.characteristics.length-1">
+    <button class="nav-button" (click)="move(1);" [disabled]="index == tiRad.characteristics.length-1">
       <i class="fas fa-chevron-circle-right"></i>
     </button>
-    <div style="clear:both;"></div>
-    <div>points: {{pointsTotal}}</div>
-    <div>prognosis: {{outcome.prognosis}}</div>
-    <div *ngFor="let note of outcome.notes" [innerHTML]="note"></div>
+    <div style="clear:both;margin-bottom:50px;"></div>
+    <div *ngIf="outcome.prognosis" style="height: 100px; box-shadow: inset 0 0 10px #222; background-color:#444; padding: 30px; border-radius:5px;">
+      <div class="copy-button">
+        <div>
+          <i class="fas fa-copy"></i>
+        </div>
+        <div class="copy-text">COPY</div>
+      </div>
+      <div>{{outcome.prognosis}}</div>
+      <div *ngFor="let note of outcome.notes" [innerHTML]="note"></div>
+    </div>
   </div>
 </div>

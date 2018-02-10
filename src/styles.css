@@ -7,6 +7,7 @@ body{
   height: 100%;
   margin: 0;
   overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1{
@@ -72,7 +73,7 @@ li{
     border-radius:4px;
 }
 
-button{
+.nav-button{
   width: 70px;
   height: 200px;
   border-radius: 5px;
@@ -80,4 +81,26 @@ button{
   background-color: #999;
   border: none;
   float: left;
+}
+
+.copy-button{
+  height: calc(100% - 40px);
+  float: left;
+  vertical-align: middle;
+  background-color: #BBB;
+  border-radius: 5px;
+  padding: 20px;
+  color: #444;
+  font-size: 15px;
+  cursor: pointer;
+  margin-right: 20px;
+  text-align: center;
+}
+
+.copy-button .copy-text{
+  margin-top: 8px;
+}
+
+.copy-button svg{
+  font-size: 45px;
 }
